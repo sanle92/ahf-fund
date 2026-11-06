@@ -1,0 +1,14 @@
+{
+  "name": "aminia-hope-supabase-fundraising",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node --check public/holyghost.js && node --check public/holyghost-extras.js && node --check public/public.js && node --check public/supabase-client.js && node --check public/config-validation.js && node --check scripts/build.mjs && node --check scripts/dev.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.3.14"
+  }
+}

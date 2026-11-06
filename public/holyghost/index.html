@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>AHF | Update fundraising progress</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/additions.css">
+  <style>[hidden]{display:none!important}</style>
+  <script type="module" src="/holyghost.js"></script>
+</head>
+<body>
+  <header><div class="wrap nav">
+    <a class="brand" href="/"><img src="/logo.jpg" alt=""></a>
+    <a class="nav-link" href="/">View public page ↗</a>
+  </div></header>
+  <main class="admin-shell">
+    <span class="pill">PRIVATE TEAM DASHBOARD</span>
+    <h1>Update your progress.</h1>
+    <p class="subtext">Amounts are cumulative totals in US dollars. Leave a field blank if its total has not been reported. Your changes are visible publicly after saving.</p>
+    <div class="form">
+      <p id="auth-status" role="status" aria-live="polite">Loading sign-in…</p>
+      <p id="setup-help" class="subtext" hidden>See <strong>README.md</strong> in the download for setup steps. Never put your password or a secret key in a website file.</p>
+      <p id="user-id-panel" class="subtext" hidden>Your administrator user ID: <code id="user-id" style="overflow-wrap:anywhere"></code><br>If access is denied, compare this ID with the administrator UID in the SQL setup.</p>
+      <form id="login-form" hidden>
+        <div class="field"><label for="email">Email address</label><input id="email" type="email" autocomplete="username" required></div>
+        <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+        <button type="submit" class="button" id="login">Sign in</button>
+      </form>
+      <button type="button" class="button secondary" id="google" hidden>Sign in with Google</button>
+      <button type="button" class="button secondary" id="logout" hidden>Sign out</button>
+    </div>
+    <br>
+    <form id="form" class="form" hidden>
+      <div class="field"><label for="cash">Money received (USD)</label><input id="cash" type="number" min="0" max="1000000000" step="0.01" inputmode="decimal"><div class="subtext">Only funds actually received. Do not include pledges or donated items.</div></div>
+      <div class="field"><label for="pledges">Pledges not yet received (USD)</label><input id="pledges" type="number" min="0" max="1000000000" step="0.01" inputmode="decimal"></div>
+      <div class="field"><label for="inkind">Estimated value of donated items (USD)</label><input id="inkind" type="number" min="0" max="1000000000" step="0.01" inputmode="decimal"></div>
+      <div class="field"><label for="note">Public progress update</label><textarea id="note" maxlength="400" rows="3" placeholder="Share a short update with supporters."></textarea></div>
+      <div class="field"><label for="contact">Public contact</label><input id="contact" maxlength="150" placeholder="Email address or contact details"><div class="subtext">Visible to everyone. Enter an email address to enable the contact button.</div></div>
+      <button class="button" id="save" type="submit" disabled>Save and publish update</button>
+      <button class="button secondary" id="reload" type="button" hidden>Discard edits and reload</button>
+      <p class="message" id="message" role="status" aria-live="polite">Loading…</p>
+    </form>
+    <div id="extras-root" hidden>
+      <form id="site-form" class="form admin-section">
+        <h2>Foundation details</h2>
+        <p class="subtext">Update the vision, mission and public phone number shown on the page.</p>
+        <div class="field"><label for="site-vision">Vision</label><textarea id="site-vision" maxlength="500" rows="3" required></textarea></div>
+        <div class="field"><label for="site-mission">Mission</label><textarea id="site-mission" maxlength="800" rows="4" required></textarea></div>
+        <div class="field"><label for="site-phone">Public phone number</label><input id="site-phone" type="tel" inputmode="tel" maxlength="40" placeholder="e.g. +256 …"><div class="subtext">Include the country code. Leave blank until you have a public number.</div></div>
+        <div class="donor-form-actions"><button id="site-save" class="button" type="submit" disabled>Save foundation details</button><button id="site-reload" class="button secondary" type="button" hidden>Discard edits and reload</button></div>
+        <p id="site-message" class="message" role="status" aria-live="polite">Loading…</p>
+      </form>
+      <section class="form admin-section" aria-labelledby="donor-heading">
+        <h2 id="donor-heading">Donor acknowledgements</h2>
+        <p class="subtext">Add supporters who agree to be recognised. Acknowledgements do not automatically change the fundraising total.</p>
+        <ul id="donor-admin-list" class="donor-admin-list"></ul>
+        <p id="donor-list-message" class="subtext" role="status" aria-live="polite">Loading…</p>
+        <div class="donor-pagination"><button id="donor-prev" type="button" class="button secondary" disabled>Previous</button><span id="donor-page" class="subtext"></span><button id="donor-next" type="button" class="button secondary" disabled>Next</button><button id="donor-refresh" type="button" class="button secondary">Refresh list</button></div>
+        <h3 id="donor-form-title">Add a supporter</h3>
+        <form id="donor-form">
+          <label class="checkbox-row"><input id="donor-anonymous" type="checkbox"><span>Show as Anonymous</span></label>
+          <div class="field"><label for="donor-name">Donor name</label><input id="donor-name" maxlength="100" autocomplete="off" placeholder="Name to display"></div>
+          <div class="field"><label for="donor-amount">Amount received (USD)</label><input id="donor-amount" type="number" min="0.01" max="1000000000" step="0.01" inputmode="decimal" required></div>
+          <div class="field"><label for="donor-comment">Public comment (optional)</label><textarea id="donor-comment" maxlength="300" rows="3" placeholder="A message the donor has agreed to share"></textarea></div>
+          <label class="checkbox-row"><input id="donor-published" type="checkbox"><span>Publish this acknowledgement on the public page</span></label>
+          <label class="checkbox-row"><input id="donor-consent" type="checkbox"><span>I confirm the donor agreed to publish this name or anonymity, amount and comment.</span></label>
+          <p class="subtext">Leave unpublished to keep an acknowledgement as a draft. Do not include private information in a public comment.</p>
+          <div class="donor-form-actions"><button id="donor-save" type="submit" class="button" disabled>Save supporter</button><button id="donor-cancel" type="button" class="button secondary" hidden>Cancel editing</button></div>
+          <p id="donor-message" class="message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

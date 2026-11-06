@@ -1,0 +1,33 @@
+/* New sections share the colours, typography and spacing of the original site. */
+.nav{justify-content:center}
+footer .wrap{text-align:center;display:flex;justify-content:center}
+.principles{background:#f0f3e9}
+.principles-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+.principle{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px;box-shadow:0 12px 32px #183d280b}
+.principle h3{font-size:25px;margin:15px 0 10px}
+.principle p{margin:0;color:#596d5e;overflow-wrap:anywhere;white-space:pre-wrap}
+.donor-grid{display:flex;overflow-x:auto;gap:18px;margin-top:28px;scrollbar-width:none}
+.donor-grid::-webkit-scrollbar{display:none}
+.donor-card{border:1px solid var(--line);border-radius:12px;background:#fafbf7;padding:16px;min-width:240px;flex-shrink:0}
+.donor-top{display:flex;justify-content:space-between;align-items:start;gap:12px}
+.donor-name{color:var(--forest);font-weight:700;overflow-wrap:anywhere}
+.donor-amount{font-weight:700;color:var(--leaf);white-space:nowrap}
+.donor-comment{color:#617265;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0 0;max-width:30ch;word-break:break-word}
+.donor-empty{color:#617265;margin:25px 0 0}
+.donor-more{margin:22px 0 0}
+.contact-phone{color:#fff;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.admin-section{margin-top:18px}
+.admin-section h2{font-size:28px;margin:0 0 10px}
+.admin-section h3{font-size:21px;margin:24px 0 12px}
+.checkbox-row{display:flex;align-items:flex-start;gap:10px;margin:15px 0;font-weight:400}
+.checkbox-row input{width:auto;flex:none;margin:5px 0 0}
+.checkbox-row span{font-weight:400;color:#53685a}
+.donor-admin-list{padding:0;margin:20px 0;list-style:none}
+.donor-admin-item{padding:17px 0;border-top:1px solid var(--line);overflow-wrap:anywhere}
+.donor-admin-item strong{color:var(--forest)}
+.donor-admin-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.donor-admin-actions .button,.donor-pagination .button{padding:8px 12px;font-size:12px;margin:0}
+.donor-pagination{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.donor-form-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.donor-form-actions .secondary{margin-left:0}
+@media(max-width:760px){.principles-grid{grid-template-columns:1fr}.principle{padding:23px}.donor-card{padding:14px;min-width:220px}}
